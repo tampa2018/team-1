@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NavBar from './components/NavBar.js';
 import Home from './views/Home.js';
 import Feed from './views/feed.js';
+import CreatePost from './components/CreatePost.js'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 const App = () => (
@@ -15,6 +16,9 @@ const App = () => (
       </div>
       <div>
         <Route exact path="/" component={Home}/>
+      </div>
+      <div>
+        <Route exact path="/CreatePost" component={CreatePost}/>
       </div>
   </div>
 )
