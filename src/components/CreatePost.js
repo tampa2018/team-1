@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
+
+
 const styles = {
   card: {
     minWidth: 275,
@@ -26,37 +28,77 @@ const styles = {
   },
 };
 
-function createPost(props) {
-  const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <div>
-          <TextField
-            id="title"
-            label="Idea Title"
-            margin="normal"
-          />
-        </div>
-        <div>
-          <TextField
-            id="body"
-            label="What do you think?"
-            margin="normal"
-          />
-        </div>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => alert('clicked')}>Create Post</Button>
-      </CardActions>
-    </Card>
-  );
+class CreatePost extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {subject: '', body: ''};
+        
+        this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        this.handleBodyChange = this.handleBodyChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+
+    handleSubjectChange(event){
+      this.setState({subject: event.target.value});
+    }
+    handleBodyChange(event){
+        this.setState({body: event.target.value});
+    }
+
+
+    handleSubmit(event) {
+      event.preventDefault();
+        //alert('subject:' +  this.state.subject + 'body:' + this.state.body);
+        
+      }
+
+      render(){
+        const { classes } = this.props;
+        const bull = <span className={classes.bullet}>•</span>;
+        
+
+      
+        return (
+          <Card className={classes.card}>
+        
+            <CardContent>
+              <form onSubmit={this.handleSubmit} >
+
+              <div>
+              <TextField
+                id="standard-name"
+                label="Subject"
+                margin="normal"
+                onChange={this.handleSubjectChange}
+              />
+              </div>
+
+              <div>
+              <TextField
+                id="standard-name"
+                label="What do you think?"
+                margin="normal"
+                onChange={this.handleBodyChange}
+              />
+              </div>
+              <CardActions>
+              <Button size="small" type='submit'>Create Post</Button>
+            </CardActions>
+              
+              </form>
+            </CardContent>
+            
+          </Card>
+        );
+      }
 }
 
-createPost.propTypes = {
+
+
+CreatePost.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(createPost);
+export default withStyles(styles)(CreatePost);
