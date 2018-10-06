@@ -85,16 +85,16 @@ class CreatePost extends React.Component{
         const { vertical, horizontal, open } = this.state;
 
         return (
-          
+
           <Route render={({ history}) => (
-            
+
             <Card className={classes.card}>
 
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
                 <Typography variant="h5" component="h2">
-                    What's on your mind?
+                    What&#39;s on your mind?
                 </Typography>
 
                 <div>
@@ -158,9 +158,9 @@ class CreatePost extends React.Component{
               </CardContent>
 
             </Card>
-          
+
           )}/>
-          
+
         );
       }
 }
