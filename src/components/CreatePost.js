@@ -91,6 +91,10 @@ class CreatePost extends React.Component{
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
+                <Typography variant="h5" component="h2">
+                    What's on your mind?
+                </Typography>
+
                 <div>
                 <TextField
                   id="standard-name"
