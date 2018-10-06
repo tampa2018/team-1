@@ -4,11 +4,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import Comment from './Comment.js'
 import Grid from '@material-ui/core/Grid'
 import Respond from './Respond.js'
+import Dialog from '@material-ui/core/Dialog'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogActions from '@material-ui/core/DialogActions'
 
 const styles = {
   card: {
@@ -34,9 +43,19 @@ class Post extends React.Component{
       this.state = {
           comments : [],
           showRespond: false,
-          id: this.props.post_id
+          id: this.props.post_id,
+          open: false,
+          deleted:false
       }
   }
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+    handleClose = () => {
+      this.setState({ open: false });
+  };
 
   handleClick = () => {
     this.setState({showRespond: !this.state.showRespond});
@@ -46,7 +65,10 @@ class Post extends React.Component{
       this.getComments();
   }
 
-  
+  delete = _ => {
+    this.setState({deleted:true})
+    this.handleClose();
+  }
     
   getComments = _ => {
     fetch('http://localhost:4000/comments/' + this.state.id)
@@ -66,21 +88,41 @@ class Post extends React.Component{
         </Grid>
       );
     }
-    return (
+    return ((!this.state.deleted &&
       <Card>
+        <CardHeader
+          action={
+            <IconButton onClick={this.handleClickOpen}>
+              <DeleteIcon/>
+            </IconButton>
+            }
+          title={this.props.post_subject}
+          subheader={this.props.username}
+          />
+            <Dialog
+              open={this.state.open}
+              onClose={this.handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Delete this Post?"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to Delete this Post?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.delete} color="primary">
+                  Delete
+                </Button>
+                <Button onClick={this.handleClose} color="primary" autoFocus>
+                  Cancel
+                </Button>
+              </DialogActions>
+              </Dialog>
         <CardContent>
-
-          <Typography variant="headline" component="h2">
-            {this.props.username}
-          </Typography>
-
-          <Typography variant="title">
-            {this.props.post_subject}
-          </Typography>
-
           <Typography component="p">
             {this.props.content}
-
           </Typography>
         </CardContent>
         <CardActions>
@@ -101,7 +143,7 @@ class Post extends React.Component{
           </Grid>
         </CardContent>
       </Card>
-    );
+    ));
   }
 }
 
