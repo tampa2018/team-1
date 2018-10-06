@@ -27,13 +27,12 @@ const styles = {
 
 function Post(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
       <CardContent>
         
-        <Typography variant="h5" component="h2">
+        <Typography variant="headline" component="h2">
           {props.username}
         </Typography>
         

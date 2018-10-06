@@ -7,7 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom'
 
 
 const styles = {
@@ -48,49 +53,49 @@ class CreatePost extends React.Component{
     }
 
 
-    handleSubmit(event) {
-      event.preventDefault();
+    handleSubmit(e) {
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
         //alert('subject:' +  this.state.subject + 'body:' + this.state.body);
         
       }
 
       render(){
-        const { classes } = this.props;
-        const bull = <span className={classes.bullet}>•</span>;
-        
+        const { classes } = this.props;    
 
-      
         return (
-          <Card className={classes.card}>
-        
-            <CardContent>
-              <form onSubmit={this.handleSubmit} >
+          <Route render={({ history}) => (
+            <Card className={classes.card}>
+          
+              <CardContent>
+                <form onSubmit={(e) => {this.handleSubmit(e);history.push("/Feed");}} >
 
-              <div>
-              <TextField
-                id="standard-name"
-                label="Subject"
-                margin="normal"
-                onChange={this.handleSubjectChange}
-              />
-              </div>
+                <div>
+                <TextField
+                  id="standard-name"
+                  label="Subject"
+                  margin="normal"
+                  onChange={this.handleSubjectChange}
+                />
+                </div>
 
-              <div>
-              <TextField
-                id="standard-name"
-                label="What do you think?"
-                margin="normal"
-                onChange={this.handleBodyChange}
-              />
-              </div>
-              <CardActions>
-              <Button size="small" type='submit'>Create Post</Button>
-            </CardActions>
+                <div>
+                <TextField
+                  id="standard-name"
+                  label="What do you think?"
+                  margin="normal"
+                  onChange={this.handleBodyChange}
+                />
+                </div>
+                <CardActions>
+                <Button size="small" type='submit'>Create Post</Button>
+              </CardActions>
+                
+                </form>
+              </CardContent>
               
-              </form>
-            </CardContent>
-            
-          </Card>
+            </Card>
+          )}/>
         );
       }
 }
