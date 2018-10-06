@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Comment from './Comment.js'
 import Grid from '@material-ui/core/Grid'
+import Respond from './Respond.js'
 
 const styles = {
   card: {
@@ -33,8 +34,19 @@ class Post extends React.Component{
       this.state = {
           posts: [],
           names: [],
-          current: []
+          current: [],
+          showRespond: false,
       }
+  }
+
+  handleClick() {
+    if(this.state.showRespond) {
+      this.setState(this.state.showRespond: false);
+    }
+    else {
+      this.setState(this.state.showRespond: true);
+    }
+
   }
 
   render() {
@@ -52,21 +64,22 @@ class Post extends React.Component{
     return (
       <Card className={classes.card}>
         <CardContent>
-          
+
           <Typography variant="headline" component="h2">
             {this.props.username}
           </Typography>
-          
+
           <Typography component="p">
             {this.props.content}
-          
+
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Like</Button>
           <Button size="small">Dislike</Button>
-          <Button size="small">Comment</Button>
+          <Button size="small" onClick={this.handleClick}>Comment</Button>
         </CardActions>
+        {this.state.showRespond && <Respond/>}
         <CardContent>
           <Grid
               container
