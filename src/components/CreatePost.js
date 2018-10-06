@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 const styles = {
   card: {
@@ -25,34 +26,37 @@ const styles = {
   },
 };
 
-function SimpleCard(props) {
+function createPost(props) {
   const { classes } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        
-        <Typography variant="h5" component="h2">
-          {props.username}
-        </Typography>
-        
-        <Typography component="p">
-          {props.content}
-         
-        </Typography>
+        <div>
+          <TextField
+            id="title"
+            label="Idea Title"
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="body"
+            label="What do you think?"
+            margin="normal"
+          />
+        </div>
       </CardContent>
       <CardActions>
-        <Button size="small">Like</Button>
-        <Button size="small">Dislike</Button>
-        <Button size="small">Comment</Button>
+        <Button size="small" onClick={() => alert('clicked')}>Create Post</Button>
       </CardActions>
     </Card>
   );
 }
 
-SimpleCard.propTypes = {
+createPost.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(createPost);

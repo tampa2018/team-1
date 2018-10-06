@@ -1,18 +1,47 @@
 import React from 'react'
-import SimpleCard from '../components/post.js'
+import Post from '../components/ViewPost.js'
+import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-export default class Feed extends React.Component {
-    render () {
-        const username = "testName";
-        const content = `This is a lot of text for a content of a post`;
+const styles = {
+    grid: {
+      minWidth: 275,
+    },
+  };
 
-        return (
+function Feed(props){
+    const { classes } = props;
+    let data = [
+        { username: "Alex", content: "1" },
+        { username: "Rohan", content: "2" },
+        { username: "Wyatt", content: "3" }
+        ];
+    const listComments = data.map((comment) =>
+        <Grid className={classes.grid} item xs={12}>
+            {<Post xs username={comment.username} content={comment.content}/>}
+        </Grid>
+    );
+    return (
+    <div>
         <div>
-            <div>
-                <SimpleCard username={username} content={content}/>
-            </div>
+            <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="stretch"
+                spacing={24}
+            >
+                {listComments}
+            </Grid>
         </div>
+    </div>
 
-        )
-    }
+    )
 }
+
+Feed.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+  
+export default withStyles(styles)(Feed);
