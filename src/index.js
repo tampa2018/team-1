@@ -17,11 +17,6 @@ const App = () => (
       <Router>
         <div>
           <NavBar/>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/Feed">Feed</Link></li>
-            <li><Link to="/CreatePost">Create Post</Link></li>
-          </ul>
           <Switch>
             <Route path="/Feed" component={Feed}/>
             <Route exact path="/" component={Home}/>
