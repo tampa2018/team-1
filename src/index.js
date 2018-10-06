@@ -24,7 +24,7 @@ const App = () => (
           <Route path="/Feed" component={Feed}/>
           <Route exact path="/" component={Home}/>
           <Route exact path="/CreatePost" component={CreatePost}/>
-          <Route path="/" component={InvalidPage}/>
+          <Route path="*" component={NoMatch} status={404}/>
           </div>
       </Router>
   </div>
