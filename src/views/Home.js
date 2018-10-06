@@ -19,6 +19,9 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     height: "80vh",
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   title: {
     fontSize: "72px",
