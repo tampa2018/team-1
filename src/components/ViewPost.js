@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Comment from './Comment.js'
 import Grid from '@material-ui/core/Grid'
-import Respond from './Respond.js'
 
 const styles = {
   card: {
@@ -28,58 +27,49 @@ const styles = {
   },
 };
 
-class Post extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {showCommentBox: false};
-      this.showComment = this.showComment.bind(this);
-      var listComments
-      if(props.comments !== undefined){
-        this.listComments = props.comments.map((comment) =>
-              <Grid className={classes.grid} item xs={12}>
-                  {<Comment xs username={comment.username} content={comment.content}/>}
-              </Grid>
-
-        );
-      }
-  }
-  showComment() {
-    this.setState({showCommentBox: true})
-  }
-  render() {
-    return (
-      <Card className={this.props.card}>
-        <CardContent>
-
-          <Typography variant="headline" component="h2">
-            {this.props.username}
-          </Typography>
-
-          <Typography component="p">
-            {this.props.content}
-
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Like</Button>
-          <Button size="small">Dislike</Button>
-          <Button size="small" onClick={this.showComment}>Comment</Button>
-        </CardActions>
-        {this.state.showCommentBox && <Respond/>}
-        <CardContent>
-          <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="stretch"
-              spacing={24}
-          >
-              {this.listComments}
+function Post(props) {
+  const { classes } = props;
+  var listComments
+  if(props.comments !== undefined){
+    listComments = props.comments.map((comment) =>
+          <Grid className={classes.grid} item xs={12}>
+              {<Comment xs username={comment.username} content={comment.content}/>}
           </Grid>
-        </CardContent>
-      </Card>
+
     );
   }
+
+  return (
+    <Card className={classes.card}>
+      <CardContent>
+        
+        <Typography variant="headline" component="h2">
+          {props.username}
+        </Typography>
+        
+        <Typography component="p">
+          {props.content}
+         
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Like</Button>
+        <Button size="small">Dislike</Button>
+        <Button size="small">Comment</Button>
+      </CardActions>
+      <CardContent>
+        <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="stretch"
+            spacing={24}
+        >
+            {listComments}
+        </Grid>
+      </CardContent>
+    </Card>
+  );
 }
 
 Post.propTypes = {
