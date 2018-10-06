@@ -12,12 +12,23 @@ import {
 } from 'react-router-dom'
 import InvalidPage from './views/404.js'
 import history from './history'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+
+const navTheme = createMuiTheme({
+  palette: {
+    primary: {main: '#81717a'},
+  },
+});
+
 
 const App = () => (
   <div>
       <Router>
         <div>
+        <MuiThemeProvider theme={navTheme}>
           <NavBar/>
+        </MuiThemeProvider>
           <Switch>
             <Route path="/Feed" component={Feed}/>
             <Route exact path="/" component={Home}/>
