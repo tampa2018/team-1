@@ -33,16 +33,20 @@ function createPost(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <TextField
-          id="title"
-          label="Idea Title"
-          margin="normal"
-        />
-        <TextField
-          id="body"
-          label="What do you think?"
-          margin="normal"
-        />
+        <div>
+          <TextField
+            id="title"
+            label="Idea Title"
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="body"
+            label="What do you think?"
+            margin="normal"
+          />
+        </div>
       </CardContent>
       <CardActions>
         <Button size="small" onClick={() => alert('clicked')}>Create Post</Button>
