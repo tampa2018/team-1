@@ -18,6 +18,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
+import UpIcon from '@material-ui/icons/ThumbUp';
+import DownIcon from '@material-ui/icons/ThumbDown';
 
 const styles = {
   card: {
@@ -45,7 +47,8 @@ class Post extends React.Component{
           showRespond: false,
           id: this.props.post_id,
           open: false,
-          deleted:false
+          deleted:false,
+          vote: null,
       }
   }
 
@@ -70,6 +73,24 @@ class Post extends React.Component{
     this.handleClose();
   }
     
+  upClick() {
+    if(this.state.vote === null) {
+      this.state.vote = 'up';
+    }
+    else if(this.state.vote === 'down') {
+      this.state.vote = 'up';
+    }
+  }
+
+  downClick() {
+    if(this.state.vote === null) {
+      this.state.vote = 'down';
+    }
+    else if(this.state.vote === 'up') {
+      this.state.vote = 'down';
+    }
+  }
+
   getComments = _ => {
     fetch('http://localhost:4000/comments/' + this.state.id)
     .then(response => response.json())
@@ -126,9 +147,11 @@ class Post extends React.Component{
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Like</Button>
-          <Button size="small">Dislike</Button>
+          <Button size="small" onClick={this.upClick}>Like</Button>
+          <Button size="small" onClick={this.downClick}>Dislike</Button>
           <Button size="small" onClick={this.handleClick}>Comment</Button>
+          {this.state.vote === 'up' && <UpIcon/>};
+          {this.state.vote === 'down' && <DownIcon/>};
         </CardActions>
         {this.state.showRespond && <Respond/>}
         <CardContent>

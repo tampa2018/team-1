@@ -25,14 +25,10 @@ import { withRouter } from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import StarIcon from '@material-ui/icons/Star';
 import SendIcon from '@material-ui/icons/Send';
-import MailIcon from '@material-ui/icons/Mail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ReportIcon from '@material-ui/icons/Report';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import HomeIcon from '@material-ui/icons/Home';
+import DescIcon from '@material-ui/icons/Description';
 
 
 const drawerWidth = 240;
@@ -105,13 +101,13 @@ class PersistentDrawer extends React.Component {
         <div>
           <ListItem button onClick={() => {history.push("/");this.handleDrawerClose()}}>
             <ListItemIcon>
-              <InboxIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <ListItem button onClick={() => {history.push("/Feed");this.handleDrawerClose()}}>
             <ListItemIcon>
-              <StarIcon />
+              <DescIcon />
             </ListItemIcon>
             <ListItemText primary="Feed" />
           </ListItem>
@@ -126,7 +122,7 @@ class PersistentDrawer extends React.Component {
               <SendIcon />
             </ListItemIcon>
             <ListItemText primary="Create Post" />
-          </ListItem> 
+          </ListItem>
         </div>
       )}/>
     );

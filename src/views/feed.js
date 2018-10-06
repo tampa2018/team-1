@@ -38,14 +38,11 @@ class Feed extends React.Component {
     render(){
         const { posts } = this.state;
         const { classes } = this.props;
-        var listPosts;
-        try{
-            listPosts = posts.map((post) =>
-                <Grid key={post.post_id} className={classes.grid} item xs={12}>
-                    {<Post xs post_id={post.post_id} username={post.first_name +" "+post.last_name}  content={post.body} post_subject={post.post_subject}/>}
-                </Grid>
-            );
-        }catch{}
+        const listPosts = posts.map((post) =>
+            <Grid key={post.post_id} className={classes.grid} item xs={12}>
+                {<Post xs post_id={post.post_id} username={post.first_name +" "+post.last_name}  content={post.body} post_subject={post.post_subject}/>}
+            </Grid>
+        );
         return (
         <div>
             <div>

@@ -35,14 +35,6 @@ const styles = {
   },
 };
 
-function ExpertInfo() {
-  return (
-    <Typography variant="headline" component="h3">
-      Expert Title | Expert position
-    </Typography>
-  )
-}
-
 class Comment extends React.Component{
   constructor(props) {
     super(props);
@@ -111,6 +103,11 @@ class Comment extends React.Component{
         <CardContent>
           {/*showExpertInfo();*/}
           {/*ExpertInfo*/}
+
+          <Typography variant="headline" component="h2">
+            {this.props.username}
+          </Typography>
+
           <Typography component="p">
             {this.props.content}
           </Typography>
