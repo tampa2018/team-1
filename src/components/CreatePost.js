@@ -38,12 +38,12 @@ class CreatePost extends React.Component{
     constructor(props){
         super(props);
         this.state = {subject: '', body: ''};
-        
+
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleBodyChange = this.handleBodyChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
 
     handleSubjectChange(event){
       this.setState({subject: event.target.value});
@@ -53,22 +53,26 @@ class CreatePost extends React.Component{
     }
 
 
-    handleSubmit(e) {
-      e.stopPropagation();
-      e.nativeEvent.stopImmediatePropagation();
-        //alert('subject:' +  this.state.subject + 'body:' + this.state.body);
-        
+
+    handleSubmit(e,history) {
+      if(this.state.subject !== '' && this.state.body !== '') {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        history.push("/Feed");
+          //alert('subject:' +  this.state.subject + 'body:' + this.state.body);
+      }
+      alert('Post entries cannot be empty');
       }
 
       render(){
-        const { classes } = this.props;    
+        const { classes } = this.props;
 
         return (
           <Route render={({ history}) => (
             <Card className={classes.card}>
-          
+
               <CardContent>
-                <form onSubmit={(e) => {this.handleSubmit(e);history.push("/Feed");}} >
+                <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
                 <div>
                 <TextField
@@ -90,10 +94,10 @@ class CreatePost extends React.Component{
                 <CardActions>
                 <Button size="small" type='submit'>Create Post</Button>
               </CardActions>
-                
+
                 </form>
               </CardContent>
-              
+
             </Card>
           )}/>
         );
