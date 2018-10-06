@@ -16,11 +16,12 @@ const selectPosts = 'select * from posts p left join users u on p.fbid=u.fbid';
 const insertPost = 'INSERT INTO posts (';
 const getComments = 'select * from comments c left join users u on c.fbid=u.fbid where c.post_id='
 const getUser = 'SELECT * FROM users U WHERE fbid="';
+const checkUser = 'select count(*) as count from users where fbid =';
 
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '',
+  password : '4472AsL',
   database : 'team1'
 }); 
 
@@ -79,6 +80,28 @@ app.get('/posts', (req, res) =>{
   });
 });
 
+app.get('/checkuser/:fbid', (req, res) =>{
+  connection.query(checkUser + req.params.fbid, (err, results) => {
+    if(err)
+      return res.send(err)
+    else {
+      return res.json({
+        data: results
+      })
+    }
+  });
+});
+
+
+app.post('/deletepost/:post_id', (req, res) => {
+  connection.query('delete from posts where post_id=' + req.params.post_id, (err, results) => {
+    if(err)
+      return res.send(err)
+    else {
+      return res.send("INSERTED YAYYYYY");
+    }
+  })
+})
 app.post('/posts', (req, res) => {
   connection.query('INSERT into posts (fbid, post_subject, body, time_stamp) values(?, ?, ?, ?);', [req.body.fbid, req.body.post_subject, req.body.body, req.body.time_stamp], 
   (err, results) => {
@@ -100,6 +123,8 @@ app.post('/comments', (req, res) => {
     }
   })
 })
+
+
 /*
 app.put('/posts/createpost', (req, res) => {
   
