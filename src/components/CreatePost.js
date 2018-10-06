@@ -55,13 +55,13 @@ class CreatePost extends React.Component{
 
 
     handleSubmit(e,history) {
-      if(this.state.subject !== '' && this.state.body !== '') {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+      if(this.state.subject !== '' && this.state.body !== '') {  
         history.push("/Feed");
-          //alert('subject:' +  this.state.subject + 'body:' + this.state.body);
       }
-      alert('Post entries cannot be empty');
+      //alert('Post entries cannot be empty');
       }
 
       render(){
