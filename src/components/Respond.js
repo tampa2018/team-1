@@ -65,12 +65,13 @@ class Respond extends React.Component{
 
     handleSubmit(e,history) {
         console.log('handle submit')
-        e.preventDefault();
+        //e.preventDefault();
         //e.stopPropagation();
         //e.nativeEvent.stopImmediatePropagation();
+        
         if(this.state.body !== '') {
           console.log('in handlesubmit')
-          fetch('http://localhost:4000/comments', {
+          fetch('http://localhost:4000/comments/', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -78,8 +79,8 @@ class Respond extends React.Component{
             },
             body: JSON.stringify({
               fbid: localStorage.getItem("fbid"),
-              post_id: this.state.subject,
-              body: this.props.id,
+              post_id: this.props.id,
+              body: this.state.body,
               time_stamp: 'dummy_string',
             })
           })

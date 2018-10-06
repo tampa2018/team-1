@@ -73,7 +73,8 @@ class Post extends React.Component{
   delete = _ => {
     this.setState({deleted:true})
     console.log("In Delete");
-    fetch('http://localhost:4000/deletepost/' + this.state.id, {
+    console.log("State");
+    fetch('http://localhost:4000/deletepost/', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
