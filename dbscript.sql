@@ -32,17 +32,26 @@ create table admins (
     foreign key(fbid) references users(fbid) on delete cascade 
 );
 
+create table campaigns(
+	campaign_year varchar(8) not null,
+    title varchar(50), 
+    description varchar(250),
+    primary key(campaign_year)
+);
+
 create table posts(
+	post_id varchar(100) not null,
 	fbid varchar(20) not null,
-    post_id varchar(100) not null,
     post_subject varchar(500) not null,
     body varchar(1000),
     num_likes INT, 
     num_dislikes INT,
     time_stamp varchar(100),
     category varchar(100),
+    campaign_year varchar(8),
     primary key (post_id),
-    foreign key (fbid) references users(fbid) on delete cascade
+    foreign key (fbid) references users(fbid) on delete cascade,
+    foreign key (campaign_year) references campaigns(campaign_year) on delete cascade
   );
 
 create table comments(
@@ -66,14 +75,16 @@ INSERT into users values("6", "Samuel", "Stall");
 INSERT into admins values("2");
 INSERT into admins values("3");
 
+INSERT into campaigns values("2018", "It's our 2018 campaign", "Get excited!");
+
 INSERT into experts values("2", "JPMorgan", "I work at JPMorgan I swear");
 
-INSERT into posts values("1", "1", "Who needs more coffee?", "me", 1000, 4, "someone give me coffee", "time");
-INSERT into posts values("1", "2", "I ate too many cookies", "many regrets", 1000, 4, "cookies", "time");
-INSERT into posts values("2", "3", "ideas ideas", "so much description", 1000, 4, "ideas", "time");
-INSERT into posts values("3", "4", "idea1", "body1", 1000, 4, "category1", "time");
-INSERT into posts values("5", "5", "idea2", "body2", 1000, 4, "category2", "time");
-INSERT into posts values("6", "6", "idea3", "body2", 1000, 4, "category3", "time");
+INSERT into posts values("1", "1", "Who needs more coffee?", "me", 1000, 4, "someone give me coffee", "time", "2018");
+INSERT into posts values("2", "1", "I ate too many cookies", "many regrets", 1000, 4, "cookies", "time", "2018");
+INSERT into posts values("3", "2", "ideas ideas", "so much description", 1000, 4, "ideas", "time", "2018");
+INSERT into posts values("4", "3", "idea1", "body1", 1000, 4, "category1", "time", "2018");
+INSERT into posts values("5", "5", "idea2", "body2", 1000, 4, "category2", "time", "2018");
+INSERT into posts values("6", "6", "idea3", "body2", 1000, 4, "category3", "time", "2018");
 
 INSERT into comments values("2", "1", "1", "sammeeeee", "time");
 INSERT into comments values("3", "3", "2", "oh wow what a great idea", "time");
