@@ -22,6 +22,7 @@ const styles = theme => ({
     width: '80%',
     marginLeft: 'auto',
     marginRight: 'auto',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: "72px",
@@ -53,7 +54,7 @@ function Home(props) {
         >
             <Grid item xs={12}>
                 <Typography className={classes.title} variant="headline" component="h3">
-                    100 Great Ideas
+                    <b1>100 Great Ideas</b1>
                 </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -62,6 +63,11 @@ function Home(props) {
                     their own challenges - they just need low-barrier
                     methods to join together and address core issues.
                 </Typography>
+
+                <Typography className={classes.header} component="p">
+                    <center>__________________</center>
+                </Typography>
+
                 <br/>
                 <Typography className={classes.header} component="p">
                     <b>Join the conversation</b>
