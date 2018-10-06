@@ -27,49 +27,60 @@ const styles = {
   },
 };
 
-function Post(props) {
-  const { classes } = props;
-  var listComments
-  if(props.comments !== undefined){
-    listComments = props.comments.map((comment) =>
-          <Grid className={classes.grid} item xs={12}>
-              {<Comment xs username={comment.username} content={comment.content}/>}
-          </Grid>
-
-    );
+class Post extends React.Component{
+  constructor(props) {
+      super(props);
+      this.state = {
+          posts: [],
+          names: [],
+          current: []
+      }
   }
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        
-        <Typography variant="headline" component="h2">
-          {props.username}
-        </Typography>
-        
-        <Typography component="p">
-          {props.content}
-         
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Like</Button>
-        <Button size="small">Dislike</Button>
-        <Button size="small">Comment</Button>
-      </CardActions>
-      <CardContent>
-        <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="stretch"
-            spacing={24}
-        >
-            {listComments}
-        </Grid>
-      </CardContent>
-    </Card>
-  );
+  render() {
+    const { classes } = this.props;
+    var listComments
+    if(this.props.comments !== undefined){
+      listComments = this.props.comments.map((comment) =>
+            <Grid className={classes.grid} item xs={12}>
+                {<Comment xs username={comment.username} content={comment.content}/>}
+            </Grid>
+
+      );
+    }
+
+    return (
+      <Card className={classes.card}>
+        <CardContent>
+          
+          <Typography variant="headline" component="h2">
+            {this.props.username}
+          </Typography>
+          
+          <Typography component="p">
+            {this.props.content}
+          
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Like</Button>
+          <Button size="small">Dislike</Button>
+          <Button size="small">Comment</Button>
+        </CardActions>
+        <CardContent>
+          <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="stretch"
+              spacing={24}
+          >
+              {listComments}
+          </Grid>
+        </CardContent>
+      </Card>
+    );
+  }
 }
 
 Post.propTypes = {
