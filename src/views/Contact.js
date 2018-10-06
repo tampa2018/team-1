@@ -104,6 +104,12 @@ class Contact extends React.Component{
              
               <Typography variant="title" component="h2">
                   <br/>
+                Visit our <a href="http://www.radical.partners/">website </a>for more information on our organization.
+              </Typography>
+
+
+              <Typography variant="title" component="h2">
+                  <br/>
                 If you would like to stay up to date on our events, follow us on social media!
               </Typography>
 
