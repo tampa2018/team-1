@@ -89,13 +89,35 @@ class Contact extends React.Component{
           <Route render={({ history}) => (
 
             <Card className={classes.card}>
+            <center>
+              <CardContent>   
 
-              <CardContent>    
-              <Typography variant="headline" component="h2">
+              <Typography variant="Display3" component="h1">
+                  <br/>
+                Contact Us
+              </Typography>
+
+              <Typography variant="title" component="h1">
+                  <br/>
+                  Email us at <a href="info@radicalpartners.net">info@radicalpartners.net </a>with any inquiries about our leadership development programs, massive community engagements or anything else!
+              </Typography>
+             
+              <Typography variant="title" component="h2">
+                  <br/>
                 If you would like to stay up to date on our events, follow us on social media!
               </Typography>
-              </CardContent>
+
+              <Typography variant="headline" component="h2">
+                  <br/>
+              <a href="https://www.facebook.com/radicalpartners"><img src={require('./fbfinal.png')} height = "60" /></a>
+              &nbsp;&nbsp;
+              <a href="https://twitter.com/RadicalPartners"><img src={require('./twitterinitial.png')} height = "60" /></a>
+              </Typography>
+
               
+
+              </CardContent>
+            </center>  
             </Card>
 
             
