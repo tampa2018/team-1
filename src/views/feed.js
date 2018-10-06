@@ -1,15 +1,20 @@
 import React from 'react'
-import SimpleCard from '../components/post.js'
+import Post from '../components/post.js'
 
 export default class Feed extends React.Component {
     render () {
-        const username = "testName";
-        const content = `This is a lot of text for a content of a post`;
-
+        let data = [
+            { username: "Alex", content: "1" },
+            { username: "Rohan", content: "2" },
+            { username: "Wyatt", content: "3" }
+          ];
+        const listComments = data.map((comment) =>
+            <li>{<Post username={comment.username} content={comment.content}/>}</li>
+        );
         return (
         <div>
             <div>
-                <SimpleCard username={username} content={content}/>
+                {listComments}          
             </div>
         </div>
 

@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-function SimpleCard(props) {
+function Post(props) {
   const { classes } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -51,8 +51,8 @@ function SimpleCard(props) {
   );
 }
 
-SimpleCard.propTypes = {
+Post.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(Post);
