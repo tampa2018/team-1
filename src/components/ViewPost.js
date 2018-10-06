@@ -39,14 +39,8 @@ class Post extends React.Component{
       }
   }
 
-  handleClick() {
-    if(this.state.showRespond) {
-      this.setState(this.state.showRespond: false);
-    }
-    else {
-      this.setState(this.state.showRespond: true);
-    }
-
+  handleClick = () => {
+    this.setState({showRespond: !this.state.showRespond});
   }
 
   render() {
