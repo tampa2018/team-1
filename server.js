@@ -21,7 +21,7 @@ const checkUser = 'select count(*) as count from users where fbid =';
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '4472AsL',
+  password : '',
   database : 'team1'
 }); 
 
