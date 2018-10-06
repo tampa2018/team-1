@@ -2,33 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './components/NavBar.js';
 import Home from './views/Home.js';
+import Feed from './views/feed.js';
+import { BrowserRouter, Route } from 'react-router-dom'
 
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPage: <Home/>,
-      isHome: true,
-    };
-  }
-
-
-  render() {      
-    return (
-      <div className="App">
-        <div className="NavBar">
-          <NavBar/>
-        </div>
-        <div className="Page">
-          {this.state.currentPage}
-        </div>
+const App = () => (
+  <div>
+      <div>
+        <NavBar/>
       </div>
-    );
-  }
-}
+      <div>
+        <Route path="/Feed" component={Feed}/>
+      </div>
+      <div>
+        <Route exact path="/" component={Home}/>
+      </div>
+  </div>
+)
 
-ReactDOM.render(
-    <App />,
+ReactDOM.render((
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>),
     document.getElementById('root')
   );
