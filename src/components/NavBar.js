@@ -27,15 +27,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
 import SendIcon from '@material-ui/icons/Send';
-<<<<<<< HEAD
 import HomeIcon from '@material-ui/icons/Home';
 import DescIcon from '@material-ui/icons/Description';
-=======
-import MailIcon from '@material-ui/icons/Mail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ReportIcon from '@material-ui/icons/Report';
-import SvgIcon from '@material-ui/core/SvgIcon';
->>>>>>> 7d0245e47152f721d59ca5d061271a168d2694fc
 
 
 const drawerWidth = 240;
