@@ -20,8 +20,6 @@ class Feed extends React.Component {
         super(props);
         this.state = {
             posts: [],
-            names: [],
-            current: []
         }
     }
 
@@ -29,39 +27,20 @@ class Feed extends React.Component {
     {
         this.getPosts();
     }
-
-    respond(response){
-        this.setState({ posts: response.data})
-        const { posts } = this.state;
-        for (var i=0; i < posts.length; i++) {
-            this.getName(posts[i].fbid)
-        } 
-    }
     
     getPosts = _ => {
         fetch('http://localhost:4000/posts')
         .then(response => response.json())
-        .then(response => this.respond(response))
-        .catch(err => console.error(err))
-    }
-    getName = (id) => {
-        fetch('http://localhost:4000/users/' + id)
-        .then(response => response.json())
-        .then(response => this.setState(previousState => ({
-                            names: [...previousState.names, {id:response.data}]
-                        })))
+        .then(response => this.setState({ posts: response.data}))
         .catch(err => console.error(err))
     }
     
     render(){
         const { posts } = this.state;
-        const { names } = this.state;
-        const { current } = this.state;
         const { classes } = this.props;
-        var username;
         const listPosts = posts.map((post) =>
-            <Grid className={classes.grid} item xs={12}>
-                {<Post xs username={names[post.fbid] && (names[post.fbid].id[0].first_name +" "+names[post.fbid].id[0].last_name)} content={post.body} comments={post.comments}/>}
+            <Grid key={post.post_id} className={classes.grid} item xs={12}>
+                {<Post xs post_id={post.post_id} username={post.first_name +" "+post.last_name}  content={post.body} post_subject={post.post_subject}/>}
             </Grid>
         );
         return (

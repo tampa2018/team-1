@@ -32,10 +32,9 @@ class Post extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
-          posts: [],
-          names: [],
-          current: [],
+          comments : [],
           showRespond: false,
+          id: this.props.post_id
       }
   }
 
@@ -43,24 +42,40 @@ class Post extends React.Component{
     this.setState({showRespond: !this.state.showRespond});
   }
 
+  componentDidMount(){
+      this.getComments();
+  }
+
+  
+    
+  getComments = _ => {
+    fetch('http://localhost:4000/comments/' + this.state.id)
+    .then(response => response.json())
+    .then(response => this.setState({ comments: response.data}))
+    .catch(err => console.error(err))
+  }
+
   render() {
     const { classes } = this.props;
+    const { comments } = this.state;
     var listComments
-    if(this.props.comments !== undefined){
-      listComments = this.props.comments.map((comment) =>
-            <Grid className={classes.grid} item xs={12}>
-                {<Comment xs username={comment.username} content={comment.content}/>}
-            </Grid>
-
+    if(comments != undefined){
+      listComments = comments.map((comment) =>
+        <Grid key={comment.comment_id} item xs={12}>
+            {<Comment xs username={comment.first_name +" "+comment.last_name}  content={comment.body}/>}
+        </Grid>
       );
     }
-
     return (
-      <Card className={classes.card}>
+      <Card>
         <CardContent>
 
           <Typography variant="headline" component="h2">
             {this.props.username}
+          </Typography>
+
+          <Typography variant="title">
+            {this.props.post_subject}
           </Typography>
 
           <Typography component="p">

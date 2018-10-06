@@ -88,7 +88,7 @@ class Respond extends React.Component{
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
-                <Typography variant="roboto" component="h2">
+                <Typography component="h2">
                     Comment
                 </Typography>
 
