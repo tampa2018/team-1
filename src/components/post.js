@@ -34,11 +34,11 @@ function SimpleCard(props) {
       <CardContent>
         
         <Typography variant="h5" component="h2">
-          Username goes here
+          {props.username}
         </Typography>
         
         <Typography component="p">
-          I like land
+          {props.content}
          
         </Typography>
       </CardContent>
