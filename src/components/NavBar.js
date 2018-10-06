@@ -61,7 +61,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'absolute',
+    position: 'fixed',
     width: drawerWidth,
   },
   spacer: {
