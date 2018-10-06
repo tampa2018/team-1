@@ -5,7 +5,13 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Facebook from '../components/Facebook';
 import Grid from '@material-ui/core/Grid';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
+const titleTheme = createMuiTheme({
+   palette: {
+     secondary: {main: '#ffc4c4'},
+   }
+})
 
 const styles = theme => ({
   paper: {
@@ -29,6 +35,7 @@ function Home(props) {
 
   return (
     <div className={classes.root}>
+    <MuiThemeProvider theme={titleTheme}>
       <Paper className={classes.paper} elevation={1}>
         <Grid
             container
@@ -44,14 +51,15 @@ function Home(props) {
             </Grid>
             <Grid item xs={12}>
                 <Typography className={classes.header} component="p">
-                    We believe that communities are capable of solving 
-                    their own challenges - they just need low-barrier 
+                    We believe that communities are capable of solving
+                    their own challenges - they just need low-barrier
                     methods to join together and address core issues.
                 </Typography>
             </Grid>
             <center><Facebook /></center>
         </Grid>
       </Paper>
+      </MuiThemeProvider>
     </div>
   );
 }

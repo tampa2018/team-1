@@ -114,13 +114,18 @@ class PersistentDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Feed" />
           </ListItem>
+          <ListItem button onClick={() => {history.push("/Contact");this.handleDrawerClose()}}>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contact" />
+          </ListItem>
           <ListItem button onClick={() => {history.push("/CreatePost");this.handleDrawerClose()}}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
             <ListItemText primary="Create Post" />
-          </ListItem>
-          <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"></link> 
+          </ListItem> 
         </div>
       )}/>
     );
@@ -169,6 +174,7 @@ class PersistentDrawer extends React.Component {
           </AppBar>
           {drawer}
           <div className={classes.spacer}></div>
+          <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"></link>
       </div>
     );
   }
