@@ -6,7 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     grid: {
-      minWidth: 275,
+        width: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
   };
 

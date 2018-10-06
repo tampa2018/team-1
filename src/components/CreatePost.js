@@ -17,7 +17,9 @@ import {
 
 const styles = {
   card: {
-    minWidth: 275,
+    width: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   bullet: {
     display: 'inline-block',
@@ -68,7 +70,9 @@ class CreatePost extends React.Component{
         const { classes } = this.props;
 
         return (
+          
           <Route render={({ history}) => (
+            
             <Card className={classes.card}>
 
               <CardContent>
@@ -99,7 +103,9 @@ class CreatePost extends React.Component{
               </CardContent>
 
             </Card>
+          
           )}/>
+          
         );
       }
 }
