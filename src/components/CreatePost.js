@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Moment from 'react-moment';
 import {
   BrowserRouter as Router,
   Route,
@@ -73,6 +74,19 @@ class CreatePost extends React.Component{
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         if(this.state.subject !== '' && this.state.body !== '') {
+          fetch('http://localhost:4000/posts', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              fbid: localStorage.getItem("fbid"),
+              post_subject: this.state.subject,
+              body: this.state.body,
+              time_stamp: 'dummy_string',
+            })
+          })
           history.push("/Feed");
         }
         else {

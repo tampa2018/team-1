@@ -6,6 +6,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import Respond from './Respond.js'
 
 const styles = {
   card: {
@@ -25,51 +27,20 @@ const styles = {
   },
 };
 
-class ExpertInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    //TODO: this.state = {expertTitle, expertInfo}
-  }
+class Comment extends React.Component{
 
   render() {
+    const { classes } = this.props;
     return (
-      <Typography variant="headline" component="h3">
-        Expert Title | Expert position
-      </Typography>
-    )
-  };
-}
-
-class Comment extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left', expert: 'false'};
-
-      this.handleSubjectChange = this.handleSubjectChange.bind(this);
-      this.handleBodyChange = this.handleBodyChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  // const { classes } = props;
-
-  showExpertInfo() {
-    //TODO: Check if the user is an expert, if so display their title and org they are involved in + maybe an icon
-  }
-
-  render() {
-    return (
-      <Card className={this.classes.card}>
+      <Card>
         <CardContent>
 
           <Typography variant="headline" component="h2">
-            {this.state.username}
+            {this.props.username}
           </Typography>
 
-          //showExpertInfo();
-
-          {this.state.expert && <ExpertInfo/>};
-
           <Typography component="p">
-            {this.state.content}
+            {this.props.content}
 
           </Typography>
         </CardContent>

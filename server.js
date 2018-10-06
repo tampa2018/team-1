@@ -80,7 +80,7 @@ app.get('/posts', (req, res) =>{
 });
 
 app.post('/posts', (req, res) => {
-  connection.query('INSERT into posts(fbid, post_id, post_subject, body, time_stamp) values(?, ?, ?, ?, ?);', [req.body.fbid, req.body.post_id, req.body.post_subject, req.body.body, req.body.time_stamp], 
+  connection.query('INSERT into posts (fbid, post_subject, body, time_stamp) values(?, ?, ?, ?);', [req.body.fbid, req.body.post_subject, req.body.body, req.body.time_stamp], 
   (err, results) => {
     if(err)
       return res.send(err)
@@ -90,6 +90,16 @@ app.post('/posts', (req, res) => {
   })
 })
 
+app.post('/comments', (req, res) => {
+  connection.query('INSERT into comments (fbid, post_id, body, time_stamp) values(?, ?, ?, ?);', [req.body.fbid, req.body.post_id, req.body.body, req.body.time_stamp], 
+  (err, results) => {
+    if(err)
+      return res.send(err)
+    else {
+      return res.send("INSERTED YAYYYYY");
+    }
+  })
+})
 /*
 app.put('/posts/createpost', (req, res) => {
   
