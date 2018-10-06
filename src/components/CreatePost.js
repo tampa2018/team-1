@@ -107,14 +107,14 @@ class CreatePost extends React.Component{
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
-                <Typography variant="h5" component="h2">
-                    What&#39;s on your mind?
+                <Typography variant="roboto" component="h2">
+                    Contribute to the conversation
                 </Typography>
 
                 <div>
                 <TextField
                   id="standard-name"
-                  label="Subject"
+                  label="Idea Title"
                   margin="normal"
                   onChange={this.handleSubjectChange}
                 />
