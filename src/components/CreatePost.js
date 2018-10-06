@@ -24,6 +24,7 @@ const styles = {
     width: '50%',
     marginLeft: 'auto',
     marginRight: 'auto',
+    
   },
   bullet: {
     display: 'inline-block',
@@ -107,7 +108,7 @@ class CreatePost extends React.Component{
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
-                <Typography variant="roboto" component="h2">
+                <Typography variant="Roboto" component="h2">
                     Contribute to the conversation
                 </Typography>
 

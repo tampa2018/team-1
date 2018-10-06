@@ -35,14 +35,17 @@ const styles = theme => ({
   body: {
     fontSize: "17px",
     textAlign: "center",
-  }
+  },
 });
 
 function Home(props) {
   const { classes } = props;
 
   return (
+    
     <div className={classes.root}>
+      <div style={{backgroundImage: "url(require('./miamiskyline.jpeg'))"}}>
+      </div>
     <MuiThemeProvider theme={titleTheme}>
       <Paper className={classes.paper} elevation={1}>
         <Grid
@@ -53,7 +56,7 @@ function Home(props) {
             spacing={24}
         >
             <Grid item xs={12}>
-                <Typography className={classes.title} variant="headline" component="h3">
+                <Typography className={classes.title} variant="title" component="h3">
                     <b1>100 Great Ideas</b1>
                 </Typography>
             </Grid>
@@ -65,7 +68,7 @@ function Home(props) {
                 </Typography>
 
                 <Typography className={classes.header} component="p">
-                    <center>__________________</center>
+                    <center>____________________</center>
                 </Typography>
 
                 <br/>
