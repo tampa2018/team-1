@@ -1,5 +1,5 @@
 import React from 'react'
-import Post from '../components/post.js'
+import Post from '../components/ViewPost.js'
 
 export default class Feed extends React.Component {
     render () {
