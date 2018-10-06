@@ -104,10 +104,6 @@ class Comment extends React.Component{
           {/*showExpertInfo();*/}
           {/*ExpertInfo*/}
 
-          <Typography variant="headline" component="h2">
-            {this.props.username}
-          </Typography>
-
           <Typography component="p">
             {this.props.content}
           </Typography>

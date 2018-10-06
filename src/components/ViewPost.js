@@ -50,6 +50,8 @@ class Post extends React.Component{
           deleted:false,
           vote: null,
       }
+      this.upClick = this.upClick.bind(this);
+      this.downClick = this.downClick.bind(this);
   }
 
   handleClickOpen = () => {
@@ -75,19 +77,21 @@ class Post extends React.Component{
     
   upClick() {
     if(this.state.vote === null) {
-      this.state.vote = 'up';
-    }
-    else if(this.state.vote === 'down') {
-      this.state.vote = 'up';
+      this.setState({vote: 'up'});
+    }else if(this.state.vote === 'down') {
+      this.setState({vote: 'up'});
+    }else{
+      this.setState({vote: null});
     }
   }
 
   downClick() {
     if(this.state.vote === null) {
-      this.state.vote = 'down';
-    }
-    else if(this.state.vote === 'up') {
-      this.state.vote = 'down';
+      this.setState({vote: 'down'});
+    }else if(this.state.vote === 'up') {
+      this.setState({vote: 'down'});
+    }else{
+      this.setState({vote: null});
     }
   }
 
