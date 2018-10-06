@@ -27,10 +27,32 @@ const styles = {
   },
 };
 
+function ExpertInfo() {
+  return (
+    <Typography variant="headline" component="h3">
+      Expert Title | Expert position
+    </Typography>
+  )
+}
+
 class Comment extends React.Component{
+  constructor(props){
+      super(props);
+      this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left', expert: 'false'};
+
+      this.showExpertInfo = this.showExpertInfo.bind(this);
+  }
+
+  showExpertInfo() {
+    //TODO: Check if the user is an expert, if so display their title and org they are involved in + maybe an icon
+  }
 
   render() {
     const { classes } = this.props;
+    var ExpertInfo = <div></div>
+    if(this.state.expert){
+      ExpertInfo=<ExpertInfo/>
+    }
     return (
       <Card>
         <CardContent>
@@ -38,6 +60,10 @@ class Comment extends React.Component{
           <Typography variant="headline" component="h2">
             {this.props.username}
           </Typography>
+
+          {/*showExpertInfo();*/}
+
+          {/*ExpertInfo*/}
 
           <Typography component="p">
             {this.props.content}
