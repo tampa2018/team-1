@@ -20,7 +20,7 @@ const getUser = 'SELECT * FROM users U WHERE fbid="';
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '',
+  password : '4472AsL',
   database : 'team1'
 }); 
 
@@ -66,7 +66,6 @@ app.get('/comments/:postid', (req, res) => {
     }
   })
 }); 
-
 
 app.get('/posts', (req, res) =>{
   connection.query(selectPosts, (err, results) => {

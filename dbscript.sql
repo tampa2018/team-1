@@ -55,3 +55,27 @@ create table comments(
     foreign key (post_id) references posts(post_id) on delete cascade,
     foreign key (fbid) references users(fbid) on delete cascade
 );
+
+INSERT into users values("1", "Bhavika", "Boga");
+INSERT into users values("2", "Alex", "Hartley");
+INSERT into users values("3", "Edward", "Abrahamson");
+INSERT into users values("4", "Wyatt", "Waterfield");
+INSERT into users values("5", "Rohan", "Kharwadkar");
+INSERT into users values("6", "Samuel", "Stall");
+
+INSERT into admins values("2");
+INSERT into admins values("3");
+
+INSERT into experts values("2", "JPMorgan", "I work at JPMorgan I swear");
+
+INSERT into posts values("1", "1", "Who needs more coffee?", "me", 1000, 4, "someone give me coffee", "time");
+INSERT into posts values("1", "2", "I ate too many cookies", "many regrets", 1000, 4, "cookies", "time");
+INSERT into posts values("2", "3", "ideas ideas", "so much description", 1000, 4, "ideas", "time");
+INSERT into posts values("3", "4", "idea1", "body1", 1000, 4, "category1", "time");
+INSERT into posts values("5", "5", "idea2", "body2", 1000, 4, "category2", "time");
+INSERT into posts values("6", "6", "idea3", "body2", 1000, 4, "category3", "time");
+
+INSERT into comments values("2", "1", "1", "sammeeeee", "time");
+INSERT into comments values("3", "3", "2", "oh wow what a great idea", "time");
+INSERT into comments values("6", "2", "3", "lol me", "time");
+INSERT into comments values("4", "6", "4", "more idea contribution, look at me go", "time");
