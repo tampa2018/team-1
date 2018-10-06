@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 class GetPosts extends Component {    
-    
-    state = {
-        posts: []
+    constructor(props) {
+        super(props);
+        this.state = {
+          posts: []
+        }
     }
     
     componentDidMount()
@@ -17,18 +20,24 @@ class GetPosts extends Component {
         .catch(err => console.error(err))
     }
 
+    returnPosts = () => {
+        this.getPosts();
+        return _.cloneDeep(this.state.posts)
+    }
+
     // Can be deleted 
     renderPost = ({ post_subject}) => <div>{post_subject}</div>
 
     render(){
         const { posts } = this.state;
+        console.log("GetPosts");
+        console.log(posts);
         return (
             <div>
                 {posts.map(this.renderPost)}
             </div>
         )
-        console.log("GetPosts");
-        console.log(posts);
+        
 
     }
     // Can be deleted
