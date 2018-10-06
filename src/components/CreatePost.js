@@ -34,7 +34,12 @@ function createPost(props) {
     <Card className={classes.card}>
       <CardContent>
         <TextField
-          id="standard-name"
+          id="title"
+          label="Idea Title"
+          margin="normal"
+        />
+        <TextField
+          id="body"
           label="What do you think?"
           margin="normal"
         />
