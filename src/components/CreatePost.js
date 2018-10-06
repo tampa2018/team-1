@@ -39,6 +39,8 @@ const styles = {
 };
 
 
+
+
 class CreatePost extends React.Component{
     constructor(props){
         super(props);
@@ -83,16 +85,16 @@ class CreatePost extends React.Component{
         const { vertical, horizontal, open } = this.state;
 
         return (
-          
+
           <Route render={({ history}) => (
-            
+
             <Card className={classes.card}>
 
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
                 <Typography variant="h5" component="h2">
-                    What's on your mind?
+                    What&#39;s on your mind?
                 </Typography>
 
                 <div>
@@ -104,12 +106,27 @@ class CreatePost extends React.Component{
                 />
                 </div>
 
-                <div>
+                {/* <div>
                 <TextField
                   id="standard-name"
                   label="What do you think?"
                   margin="normal"
                   onChange={this.handleBodyChange}
+                />
+                Used this for multiline textfields: https://material-ui.com/demos/text-fields/
+                </div> */}
+
+                <div>
+                <TextField
+                  id="standard-multiline-flexible"
+                  label="What do you think?"
+                  multiline
+                  rowsMax="4"
+                  value={this.state.multiline}
+                  onChange={this.handleBodyChange}
+                  //onChange={this.handleChange('multiline')}
+                  className={classes.textField}
+                  margin="normal"
                 />
                 </div>
                 <CardActions>
@@ -141,9 +158,9 @@ class CreatePost extends React.Component{
               </CardContent>
 
             </Card>
-          
+
           )}/>
-          
+
         );
       }
 }

@@ -31,19 +31,20 @@ function Comment(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        
+
         <Typography variant="headline" component="h2">
           {props.username}
         </Typography>
-        
+
         <Typography component="p">
           {props.content}
-         
+
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Like</Button>
         <Button size="small">Dislike</Button>
+        <Button size="small">Comment</Button>
       </CardActions>
     </Card>
   );
