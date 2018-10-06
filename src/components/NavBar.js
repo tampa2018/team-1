@@ -37,7 +37,7 @@ import ReportIcon from '@material-ui/icons/Report';
 const drawerWidth = 240;
 const styles = theme => ({
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
