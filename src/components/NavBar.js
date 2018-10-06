@@ -97,23 +97,23 @@ class PersistentDrawer extends React.Component {
     const ListItems = (
       <Route render={({ history}) => (
         <div>
-          <ListItem button>
+          <ListItem button onClick={() => {history.push("/");this.handleDrawerClose()}}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText onClick={() => {history.push("/");this.handleDrawerClose()}} primary="Home" />
+            <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => {history.push("/Feed");this.handleDrawerClose()}}>
             <ListItemIcon>
               <StarIcon />
             </ListItemIcon>
-            <ListItemText onClick={() => {history.push("/Feed");this.handleDrawerClose()}} primary="Feed" />
+            <ListItemText primary="Feed" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => {history.push("/CreatePost");this.handleDrawerClose()}}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
-            <ListItemText onClick={() => {history.push("/CreatePost");this.handleDrawerClose()}} primary="Create Post" />
+            <ListItemText primary="Create Post" />
           </ListItem>
         </div>
       )}/>
