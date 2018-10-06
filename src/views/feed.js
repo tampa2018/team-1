@@ -1,5 +1,6 @@
 import React from 'react'
 import Post from '../components/ViewPost.js'
+import GetPosts from '../components/GetPosts.js'
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -34,6 +35,7 @@ function Feed(props){
             >
                 {listComments}
             </Grid>
+            <GetPosts />
         </div>
     </div>
 

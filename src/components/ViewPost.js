@@ -34,11 +34,11 @@ function Post(props) {
       <CardContent>
         
         <Typography variant="h5" component="h2">
-          {props.username}
+          {props.post_subject}
         </Typography>
         
         <Typography component="p">
-          {props.content}
+          {props.body}
          
         </Typography>
       </CardContent>
