@@ -1,8 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res)=> {
   res.send(`Backend server listening on port 4000`);
@@ -76,6 +79,17 @@ app.get('/posts', (req, res) =>{
     }
   });
 });
+
+app.post('/posts', (req, res) => {
+  connection.query('INSERT into posts(fbid, post_id, post_subject, body, time_stamp) values(?, ?, ?, ?, ?);', [req.body.fbid, req.body.post_id, req.body.post_subject, req.body.body, req.body.time_stamp], 
+  (err, results) => {
+    if(err)
+      return res.send(err)
+    else {
+      return res.send("INSERTED YAYYYYY");
+    }
+  })
+})
 
 /*
 app.put('/posts/createpost', (req, res) => {
