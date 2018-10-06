@@ -72,7 +72,20 @@ class Post extends React.Component{
 
   delete = _ => {
     this.setState({deleted:true})
+    console.log("In Delete");
+    fetch('http://localhost:4000/deletepost/' + this.state.id, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              post_id
+            })
+          })
     this.handleClose();
+
+    
   }
     
   upClick() {
@@ -157,7 +170,7 @@ class Post extends React.Component{
           {this.state.vote === 'up' && <UpIcon/>};
           {this.state.vote === 'down' && <DownIcon/>};
         </CardActions>
-        {this.state.showRespond && <Respond/>}
+        {this.state.showRespond && <Respond post_id={this.state.id}/>}
         <CardContent>
           <Grid
               container

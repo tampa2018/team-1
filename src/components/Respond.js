@@ -64,10 +64,25 @@ class Respond extends React.Component{
 
 
     handleSubmit(e,history) {
+        console.log('handle submit')
         e.preventDefault();
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
+        //e.stopPropagation();
+        //e.nativeEvent.stopImmediatePropagation();
         if(this.state.body !== '') {
+          console.log('in handlesubmit')
+          fetch('http://localhost:4000/comments', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              fbid: localStorage.getItem("fbid"),
+              post_id: this.state.subject,
+              body: this.props.id,
+              time_stamp: 'dummy_string',
+            })
+          })
           history.push("/Feed");
         }
         else {
@@ -106,7 +121,7 @@ class Respond extends React.Component{
                 />
                 </div>
                 <CardActions>
-                <Button size="small" type='submit'>Create Post</Button>
+                <Button size="small" type='stubmit'>Create Post</Button>
               </CardActions>
 
                 </form>

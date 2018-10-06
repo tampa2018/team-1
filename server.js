@@ -93,15 +93,16 @@ app.get('/checkuser/:fbid', (req, res) =>{
 });
 
 
-app.post('/deletepost/:post_id', (req, res) => {
-  connection.query('delete from posts where post_id=' + req.params.post_id, (err, results) => {
+app.post('/deletepost/', (req, res) => {
+  connection.query('delete from posts where post_id=' + req.body.post_id, (err, results) => {
     if(err)
       return res.send(err)
     else {
-      return res.send("INSERTED YAYYYYY");
+      return res.send("Deleted yay");
     }
   })
 })
+
 app.post('/posts', (req, res) => {
   connection.query('INSERT into posts (fbid, post_subject, body, time_stamp) values(?, ?, ?, ?);', [req.body.fbid, req.body.post_subject, req.body.body, req.body.time_stamp], 
   (err, results) => {
@@ -109,6 +110,17 @@ app.post('/posts', (req, res) => {
       return res.send(err)
     else {
       return res.send("INSERTED YAYYYYY");
+    }
+  })
+})
+
+app.post('/comments', (req, res) => {
+  connection.query('INSERT into comments (fbid, post_id, body, time_stamp) values(?, ?, ?, ?);', [req.body.fbid, req.body.post_id, req.body.body, req.body.time_stamp], 
+  (err, results) => {
+    if(err)
+      return res.send(err)
+    else {
+      return res.send("Inserted comment");;
     }
   })
 })
