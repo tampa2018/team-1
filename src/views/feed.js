@@ -7,20 +7,31 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     grid: {
-      minWidth: 275,
+        width: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
   };
 
 function Feed(props){
     const { classes } = props;
     let data = [
-        { username: "Alex", content: "1" },
+        { username: "Alex", content: "1",
+          comments : [
+                        { username: "Rohan", content: "Hey Alex"},
+                        { username: "Ryan", content: "Hey Rohan"}
+                     ]
+        },
         { username: "Rohan", content: "2" },
-        { username: "Wyatt", content: "3" }
+        { username: "Wyatt", content: "3",
+          comments : [
+                        { username: "Sam", content: "Wow long day"}
+                     ]
+        }
         ];
-    const listComments = data.map((comment) =>
+    const listPosts = data.map((post) =>
         <Grid className={classes.grid} item xs={12}>
-            {<Post xs username={comment.username} content={comment.content}/>}
+            {<Post xs username={post.username} content={post.content} comments={post.comments}/>}
         </Grid>
     );
     return (
@@ -33,7 +44,7 @@ function Feed(props){
                 alignItems="stretch"
                 spacing={24}
             >
-                {listComments}
+                {listPosts}
             </Grid>
             <GetPosts />
         </div>

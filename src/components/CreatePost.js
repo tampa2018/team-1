@@ -7,10 +7,22 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom'
+
 
 const styles = {
   card: {
-    minWidth: 275,
+    width: '50%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   bullet: {
     display: 'inline-block',
@@ -26,37 +38,116 @@ const styles = {
   },
 };
 
-function createPost(props) {
-  const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <div>
-          <TextField
-            id="title"
-            label="Idea Title"
-            margin="normal"
-          />
-        </div>
-        <div>
-          <TextField
-            id="body"
-            label="What do you think?"
-            margin="normal"
-          />
-        </div>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => alert('clicked')}>Create Post</Button>
-      </CardActions>
-    </Card>
-  );
+class CreatePost extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left'};
+
+        this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        this.handleBodyChange = this.handleBodyChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+    handleSubjectChange(event){
+      this.setState({subject: event.target.value});
+    }
+    handleBodyChange(event){
+        this.setState({body: event.target.value});
+    }
+
+    handleClick = state => () => {
+      this.setState({ open: true, ...state });
+    };
+
+    handleClose = () => {
+      this.setState({ open: false });
+    };
+
+
+    handleSubmit(e,history) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+      if(this.state.subject !== '' && this.state.body !== '') {
+        history.push("/Feed");
+      }
+      else {
+        this.setState({open: true, vertical: 'top', horizontal: 'left'})
+      }
+      }
+
+      render(){
+        const { classes } = this.props;
+        const { vertical, horizontal, open } = this.state;
+
+        return (
+          
+          <Route render={({ history}) => (
+            
+            <Card className={classes.card}>
+
+              <CardContent>
+                <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
+
+                <div>
+                <TextField
+                  id="standard-name"
+                  label="Subject"
+                  margin="normal"
+                  onChange={this.handleSubjectChange}
+                />
+                </div>
+
+                <div>
+                <TextField
+                  id="standard-name"
+                  label="What do you think?"
+                  margin="normal"
+                  onChange={this.handleBodyChange}
+                />
+                </div>
+                <CardActions>
+                <Button size="small" type='submit'>Create Post</Button>
+              </CardActions>
+
+                </form>
+
+                <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={this.handleClose}
+                  ContentProps={{
+                    'aria-describedby': 'message-id',
+                  }}
+                  message={<span id="message-id">Post entries cannot be empty</span>}
+                  action={[
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  className={classes.close}
+                  onClick={this.handleClose}
+                >
+                  <CloseIcon />
+                </IconButton>,
+              ]}
+                />
+              </CardContent>
+
+            </Card>
+          
+          )}/>
+          
+        );
+      }
 }
 
-createPost.propTypes = {
+
+
+CreatePost.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(createPost);
+export default withStyles(styles)(CreatePost);

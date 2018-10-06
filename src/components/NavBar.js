@@ -15,10 +15,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Switch
+    Router,
+    Route
 } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
@@ -36,35 +34,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
 
 
-const ListItems = (
-    <Route render={({ history}) => (
-    <div>
-      <ListItem button>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText onClick={() => {history.push("/")}} primary="Home" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText onClick={() => {history.push("/Feed")}} primary="Feed" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText onClick={() => {history.push("/CreatePost")}} primary="Create Post" />
-      </ListItem>
-    </div>
-    )}/>
-);
-
 const drawerWidth = 240;
 const styles = theme => ({
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -88,7 +61,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'absolute',
+    position: 'fixed',
     width: drawerWidth,
   },
   spacer: {
@@ -117,10 +90,34 @@ class PersistentDrawer extends React.Component {
     });
   };
 
-
   render() {
     const { classes, theme } = this.props;
     const { anchor, open } = this.state;
+
+    const ListItems = (
+      <Route render={({ history}) => (
+        <div>
+          <ListItem button onClick={() => {history.push("/");this.handleDrawerClose()}}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => {history.push("/Feed");this.handleDrawerClose()}}>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="Feed" />
+          </ListItem>
+          <ListItem button onClick={() => {history.push("/CreatePost");this.handleDrawerClose()}}>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Post" />
+          </ListItem>
+        </div>
+      )}/>
+    );
 
     const drawer = (
       <Drawer
@@ -159,7 +156,7 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
+              <Typography color="inherit" noWrap>
                 Radical Partners
               </Typography>
             </Toolbar>

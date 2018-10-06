@@ -6,8 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Comment from './Comment.js'
-import Grid from '@material-ui/core/Grid'
 
 const styles = {
   card: {
@@ -27,17 +25,8 @@ const styles = {
   },
 };
 
-function Post(props) {
+function Comment(props) {
   const { classes } = props;
-  var listComments
-  if(props.comments !== undefined){
-    listComments = props.comments.map((comment) =>
-          <Grid className={classes.grid} item xs={12}>
-              {<Comment xs username={comment.username} content={comment.content}/>}
-          </Grid>
-
-    );
-  }
 
   return (
     <Card className={classes.card}>
@@ -55,25 +44,13 @@ function Post(props) {
       <CardActions>
         <Button size="small">Like</Button>
         <Button size="small">Dislike</Button>
-        <Button size="small">Comment</Button>
       </CardActions>
-      <CardContent>
-        <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="stretch"
-            spacing={24}
-        >
-            {listComments}
-        </Grid>
-      </CardContent>
     </Card>
   );
 }
 
-Post.propTypes = {
+Comment.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Post);
+export default withStyles(styles)(Comment);
