@@ -11,6 +11,7 @@ app.get('/', (req, res)=> {
 const selectUsers = 'SELECT * FROM users';
 const selectPosts = 'SELECT * FROM posts';
 const insertPost = 'INSERT INTO posts (';
+const getComments = 'SELECT * FROM comments c where c.post_id='
 const getUser = 'SELECT * FROM users U WHERE fbid="';
 
 const connection = mysql.createConnection({
@@ -51,6 +52,18 @@ app.get('/users/:fbid', (req, res) => {
   })
 });
 
+app.get('/comments/:postid', (req, res) => {
+  connection.query(getComments + req.params.postid, (err, results) => {
+    if (err)
+      return res.send(err);
+    else {
+      return res.json({
+        data: results
+      })
+    }
+  })
+}); 
+
 
 app.get('/posts', (req, res) =>{
   connection.query(selectPosts, (err, results) => {
@@ -64,11 +77,12 @@ app.get('/posts', (req, res) =>{
   });
 });
 
+/*
 app.put('/posts/createpost', (req, res) => {
   
   connection.query
 })
-
+*/
 app.listen(4000, () => {
  console.log('Go to http://localhost:4000/posts to see posts');
 });

@@ -36,9 +36,10 @@ create table posts(
 	fbid varchar(20) not null,
     post_id varchar(100) not null,
     post_subject varchar(500) not null,
-    body varchar(62000),
+    body varchar(1000),
     num_likes INT, 
     num_dislikes INT,
+    time_stamp varchar(100),
     category varchar(100),
     primary key (post_id),
     foreign key (fbid) references users(fbid) on delete cascade
@@ -48,7 +49,8 @@ create table comments(
 	fbid varchar(20) not null,
     post_id varchar(100) not null,
     comment_id varchar(100) not null,
-    body varchar(62000),
+    body varchar(1000),
+    time_stamp varchar(100),
     primary key (comment_id),
     foreign key (post_id) references posts(post_id) on delete cascade,
     foreign key (fbid) references users(fbid) on delete cascade

@@ -41,20 +41,15 @@ const styles = {
 
 
 
-class CreatePost extends React.Component{
+class Respond extends React.Component{
     constructor(props){
         super(props);
-        this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left'};
+        this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left', respond: false};
 
-        this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleBodyChange = this.handleBodyChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-    handleSubjectChange(event){
-      this.setState({subject: event.target.value});
-    }
     handleBodyChange(event){
         this.setState({body: event.target.value});
     }
@@ -72,7 +67,7 @@ class CreatePost extends React.Component{
         e.preventDefault();
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
-        if(this.state.subject !== '' && this.state.body !== '') {
+        if(this.state.body !== '') {
           history.push("/Feed");
         }
         else {
@@ -82,7 +77,7 @@ class CreatePost extends React.Component{
 
       render(){
         const { classes } = this.props;
-        const { vertical, horizontal, open } = this.state;
+        const { vertical, horizontal, open,respond } = this.state;
 
         return (
 
@@ -93,28 +88,9 @@ class CreatePost extends React.Component{
               <CardContent>
                 <form onSubmit={(e) => {this.handleSubmit(e,history);}} >
 
-                <Typography variant="h5" component="h2">
-                    What&#39;s on your mind?
+                <Typography variant="roboto" component="h2">
+                    Comment
                 </Typography>
-
-                <div>
-                <TextField
-                  id="standard-name"
-                  label="Subject"
-                  margin="normal"
-                  onChange={this.handleSubjectChange}
-                />
-                </div>
-
-                {/* <div>
-                <TextField
-                  id="standard-name"
-                  label="What do you think?"
-                  margin="normal"
-                  onChange={this.handleBodyChange}
-                />
-                Used this for multiline textfields: https://material-ui.com/demos/text-fields/
-                </div> */}
 
                 <div>
                 <TextField
@@ -167,8 +143,8 @@ class CreatePost extends React.Component{
 
 
 
-CreatePost.propTypes = {
+Respond.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreatePost);
+export default withStyles(styles)(Respond);
