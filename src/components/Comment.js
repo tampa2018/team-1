@@ -25,29 +25,61 @@ const styles = {
   },
 };
 
-function Comment(props) {
-  const { classes } = props;
+class ExpertInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    //TODO: this.state = {expertTitle, expertInfo}
+  }
 
-  return (
-    <Card className={classes.card}>
-      <CardContent>
+  render() {
+    return (
+      <Typography variant="headline" component="h3">
+        Expert Title | Expert position
+      </Typography>
+    )
+  };
+}
 
-        <Typography variant="headline" component="h2">
-          {props.username}
-        </Typography>
+class Comment extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left', expert: 'false'};
 
-        <Typography component="p">
-          {props.content}
+      this.handleSubjectChange = this.handleSubjectChange.bind(this);
+      this.handleBodyChange = this.handleBodyChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  // const { classes } = props;
 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Like</Button>
-        <Button size="small">Dislike</Button>
-        <Button size="small">Comment</Button>
-      </CardActions>
-    </Card>
-  );
+  showExpertInfo() {
+    //TODO: Check if the user is an expert, if so display their title and org they are involved in + maybe an icon
+  }
+
+  render() {
+    return (
+      <Card className={this.classes.card}>
+        <CardContent>
+
+          <Typography variant="headline" component="h2">
+            {this.state.username}
+          </Typography>
+
+          //showExpertInfo();
+
+          {this.state.expert && <ExpertInfo/>};
+
+          <Typography component="p">
+            {this.state.content}
+
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Like</Button>
+          <Button size="small">Dislike</Button>
+        </CardActions>
+      </Card>
+    );
+  }
 }
 
 Comment.propTypes = {
