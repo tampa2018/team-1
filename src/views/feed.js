@@ -19,7 +19,9 @@ class Feed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            posts: [],
+            names: [],
+            current: []
         }
     }
 
@@ -27,35 +29,39 @@ class Feed extends React.Component {
     {
         this.getPosts();
     }
+
+    respond(response){
+        this.setState({ posts: response.data})
+        const { posts } = this.state;
+        for (var i=0; i < posts.length; i++) {
+            this.getName(posts[i].fbid)
+        } 
+    }
     
     getPosts = _ => {
         fetch('http://localhost:4000/posts')
         .then(response => response.json())
-        .then(response => this.setState({ posts: response.data}))
+        .then(response => this.respond(response))
         .catch(err => console.error(err))
     }
-
+    getName = (id) => {
+        fetch('http://localhost:4000/users/' + id)
+        .then(response => response.json())
+        .then(response => this.setState(previousState => ({
+                            names: [...previousState.names, {id:response.data}]
+                        })))
+        .catch(err => console.error(err))
+    }
+    
     render(){
         const { posts } = this.state;
+        const { names } = this.state;
+        const { current } = this.state;
         const { classes } = this.props;
-        console.log(posts)
-        let data = [
-            { username: "Alex", content: "1",
-            comments : [
-                            { username: "Rohan", content: "Hey Alex"},
-                            { username: "Ryan", content: "Hey Rohan"}
-                        ]
-            },
-            { username: "Rohan", content: "2" },
-            { username: "Wyatt", content: "3",
-            comments : [
-                            { username: "Sam", content: "Wow long day"}
-                        ]
-            }
-            ];
+        var username;
         const listPosts = posts.map((post) =>
             <Grid className={classes.grid} item xs={12}>
-                {<Post xs username={post.subject} content={post.body} comments={post.comments}/>}
+                {<Post xs username={names[post.fbid] && (names[post.fbid].id[0].first_name +" "+names[post.fbid].id[0].last_name)} content={post.body} comments={post.comments}/>}
             </Grid>
         );
         return (
