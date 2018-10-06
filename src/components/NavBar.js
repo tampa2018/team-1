@@ -67,7 +67,12 @@ const styles = theme => ({
   spacer: {
     position: 'relative',
     height: '75px'
-  }
+  },
+  title: {
+    fontSize: "42px",
+    textAlign: "center",
+    fontFamily: "'PT Sans', sans-serif",
+  },
 });
 
 class PersistentDrawer extends React.Component {
@@ -115,6 +120,7 @@ class PersistentDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Create Post" />
           </ListItem>
+          <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"></link> 
         </div>
       )}/>
     );
@@ -156,7 +162,7 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography color="inherit" noWrap>
+              <Typography className={classes.title} color="inherit" noWrap>
                 Radical Partners
               </Typography>
             </Toolbar>
