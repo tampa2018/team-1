@@ -62,7 +62,7 @@ class Post extends React.Component{
     if(comments != undefined){
       listComments = comments.map((comment) =>
         <Grid key={comment.comment_id} item xs={12}>
-            {<Post xs username={comment.first_name +" "+comment.last_name}  content={comment.body}/>}
+            {<Comment xs username={comment.first_name +" "+comment.last_name}  content={comment.body}/>}
         </Grid>
       );
     }

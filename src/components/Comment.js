@@ -6,54 +6,41 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import Respond from './Respond.js'
 
-class ExpertInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    //TODO: this.state = {expertTitle, expertInfo}
-  }
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
-  render() {
-    return (
-      <Typography variant="headline" component="h3">
-        Expert Title | Expert position
-      </Typography>
-    )
-  };
-}
-
-class Comment extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {subject: '', body: '', open: false, vertical: 'top', horizontal: 'left', expert: 'false'};
-
-      this.showExpertInfo = this.showExpertInfo.bind(this);
-  }
-  
-
-  showExpertInfo() {
-    //TODO: Check if the user is an expert, if so display their title and org they are involved in + maybe an icon
-  }
+class Comment extends React.Component{
 
   render() {
-    var ExpertInfo = ""
-    if(this.state.expert){
-      ExpertInfo=<ExpertInfo/>
-    }
+    const { classes } = this.props;
     return (
       <Card>
         <CardContent>
 
           <Typography variant="headline" component="h2">
-            {this.state.username}
+            {this.props.username}
           </Typography>
 
-          {/*showExpertInfo();*/}
-
-          {ExpertInfo}
-
           <Typography component="p">
-            {this.state.content}
+            {this.props.content}
 
           </Typography>
         </CardContent>
@@ -66,6 +53,8 @@ class Comment extends React.Component {
   }
 }
 
+Comment.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-
-export default Comment;
+export default withStyles(styles)(Comment);
