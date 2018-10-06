@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Facebook from '../components/Facebook';
+
 
 const styles = theme => ({
   paper: {
@@ -35,6 +37,7 @@ function Home(props) {
             their own challenges - they just need low-barrier 
             methods to join together and address core issues.
         </Typography>
+        <center><Facebook /></center>
       </Paper>
     </div>
   );
