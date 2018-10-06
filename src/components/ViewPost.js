@@ -28,27 +28,41 @@ const styles = {
   },
 };
 
-class Post extends React.Component {
-  constructor(props){
+class Post extends React.Component{
+  constructor(props) {
       super(props);
-      this.state = {showCommentBox: false};
-      this.showComment = this.showComment.bind(this);
-      var listComments
-      if(props.comments !== undefined){
-        this.listComments = props.comments.map((comment) =>
-              <Grid className={classes.grid} item xs={12}>
-                  {<Comment xs username={comment.username} content={comment.content}/>}
-              </Grid>
-
-        );
+      this.state = {
+          posts: [],
+          names: [],
+          current: [],
+          showRespond: false,
       }
   }
-  showComment() {
-    this.setState({showCommentBox: true})
+
+  handleClick() {
+    if(this.state.showRespond) {
+      this.setState(this.state.showRespond: false);
+    }
+    else {
+      this.setState(this.state.showRespond: true);
+    }
+
   }
+
   render() {
+    const { classes } = this.props;
+    var listComments
+    if(this.props.comments !== undefined){
+      listComments = this.props.comments.map((comment) =>
+            <Grid className={classes.grid} item xs={12}>
+                {<Comment xs username={comment.username} content={comment.content}/>}
+            </Grid>
+
+      );
+    }
+
     return (
-      <Card className={this.props.card}>
+      <Card className={classes.card}>
         <CardContent>
 
           <Typography variant="headline" component="h2">
@@ -63,9 +77,9 @@ class Post extends React.Component {
         <CardActions>
           <Button size="small">Like</Button>
           <Button size="small">Dislike</Button>
-          <Button size="small" onClick={this.showComment}>Comment</Button>
+          <Button size="small" onClick={this.handleClick}>Comment</Button>
         </CardActions>
-        {this.state.showCommentBox && <Respond/>}
+        {this.state.showRespond && <Respond/>}
         <CardContent>
           <Grid
               container
@@ -74,7 +88,7 @@ class Post extends React.Component {
               alignItems="stretch"
               spacing={24}
           >
-              {this.listComments}
+              {listComments}
           </Grid>
         </CardContent>
       </Card>
