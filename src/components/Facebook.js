@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Redirect } from 'react-router'
 import FacebookLogin from 'react-facebook-login'
 
 export default class Facebook extends Component {
@@ -13,29 +14,25 @@ export default class Facebook extends Component {
 	    responseFacebook = response => {
 					console.log(response);
 					this.setState({
-						isLoggedIn: true,
+						isLoggedIn: response.userID ? true : false,
 						userId: response.userID,
 						name: response.name,
 						picture: response.picture
 					})
-					this.state.LoggedIn = true;
+					localStorage.setItem("fbid", response.userID);
 		        }
-	    componentClicked = () => console.log('Component clicked');
+		componentClicked = () => {
+			console.log('Component clicked');
+			console.log('yay');
+	
+		}
+		thingsDone = () => console.log('things done');
 	    render() {
 		            let fbContent;
 
 		            if (this.state.isLoggedIn) {
-				                fbContent = (
-									<div style={{
-										width: '400px',
-										margin: 'auto',
-										background: 'white',
-										padding: '20px'
-									}}>
-										<h2> {this.state.name} </h2>
-									</div>
-								);
-						}
+						return <Redirect to="/feed" />
+					}
 		            else {
 				                fbContent = (<FacebookLogin
 							        appId="305116443647503"
