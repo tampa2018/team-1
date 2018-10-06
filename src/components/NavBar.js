@@ -20,6 +20,7 @@ import {
     Link,
     Switch
 } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -36,27 +37,29 @@ import ReportIcon from '@material-ui/icons/Report';
 
 
 const ListItems = (
+    <Route render={({ history}) => (
     <div>
       <ListItem button>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary={<Link to="/">Home</Link>} />
+        <ListItemText onClick={() => {history.push("/")}} primary="Home" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <StarIcon />
         </ListItemIcon>
-        <ListItemText primary={<Link to="/Feed">Feed</Link>} />
+        <ListItemText onClick={() => {history.push("/Feed")}} primary="Feed" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
-        <ListItemText primary={<Link to="/CreatePost">Create Post</Link>} />
+        <ListItemText onClick={() => {history.push("/CreatePost")}} primary="Create Post" />
       </ListItem>
     </div>
-  );
+    )}/>
+);
 
 const drawerWidth = 240;
 const styles = theme => ({

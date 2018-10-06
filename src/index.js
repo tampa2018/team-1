@@ -11,6 +11,7 @@ import {
   Switch
 } from 'react-router-dom'
 import InvalidPage from './views/404.js'
+import history from './history'
 
 const App = () => (
   <div>
@@ -29,7 +30,7 @@ const App = () => (
 )
 
 ReactDOM.render((
-    <Router>
+    <Router history={history}>
       <App />
     </Router>),
     document.getElementById('root')
