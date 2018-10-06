@@ -80,7 +80,7 @@ class Post extends React.Component{
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              post_id
+              post_id : this.state.id
             })
           })
     this.handleClose();
