@@ -18,7 +18,7 @@ import red from '@material-ui/core/colors/red';
 
 const navTheme = createMuiTheme({
   palette: {
-    primary: {main: '#81717a'},
+    primary: {main: '#eb5c56'},
   },
 });
 
