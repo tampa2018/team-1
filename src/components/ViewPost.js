@@ -58,11 +58,14 @@ class Post extends React.Component{
   render() {
     const { classes } = this.props;
     const { comments } = this.state;
-    const listComments = comments.map((comment) =>
-      <Grid key={comment.comment_id} item xs={12}>
-          {<Post xs username={comment.first_name +" "+comment.last_name}  content={comment.body}/>}
-      </Grid>
-    );
+    var listComments
+    if(comments != undefined){
+      listComments = comments.map((comment) =>
+        <Grid key={comment.comment_id} item xs={12}>
+            {<Post xs username={comment.first_name +" "+comment.last_name}  content={comment.body}/>}
+        </Grid>
+      );
+    }
     return (
       <Card>
         <CardContent>
@@ -94,7 +97,7 @@ class Post extends React.Component{
               alignItems="stretch"
               spacing={24}
           >
-              {/*listComments*/}
+              {listComments}
           </Grid>
         </CardContent>
       </Card>
