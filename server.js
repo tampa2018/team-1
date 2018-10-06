@@ -14,7 +14,7 @@ app.get('/', (req, res)=> {
 const selectUsers = 'SELECT * FROM users';
 const selectPosts = 'select * from posts p left join users u on p.fbid=u.fbid';
 const insertPost = 'INSERT INTO posts (';
-const getComments = 'SELECT * FROM comments c where c.post_id='
+const getComments = 'select * from comments c left join users u on c.fbid=u.fbid where c.post_id='
 const getUser = 'SELECT * FROM users U WHERE fbid="';
 
 const connection = mysql.createConnection({
